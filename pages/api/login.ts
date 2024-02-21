@@ -1,9 +1,12 @@
 import { log } from "console";
 import type { NextApiRequest, NextApiResponse } from "next";
+import {conectarMongoDB} from '../../middlewares/conectMongoDB';
+import type {RespostaPadraoMsg} from '../../types/RespostaPadraoMsg';
 
-export default(
+
+const endpointLogin = (
     req : NextApiRequest,
-    res : NextApiResponse
+    res : NextApiResponse<RespostaPadraoMsg>
 ) => {
     if(req.method === 'POST') {
         const {login, senha} = req.body;
@@ -17,3 +20,5 @@ export default(
     }    
     return res.status(405).json({erro : 'Método inválido'})
 }
+
+export default conectarMongoDB(endpointLogin);
