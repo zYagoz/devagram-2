@@ -25,8 +25,14 @@ const comentarioEndpoint = async (req : NextApiRequest, res: NextApiResponse<Res
       }
 
       const comentario = {
-        nome : usuarioLogado.nome;
-      }
+        usuarioId : usuarioLogado._id,
+        nome : usuarioLogado.nome,
+        comentario : req.body.comentario
+      };
+
+      publicacao.comentario.push(comentario);
+      await publicacaoModel.findByIdAndUpdate({_id : publicacao});
+      return res.status(200).json({msg : 'Comentário adicionado'})
 
 
     }
