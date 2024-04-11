@@ -5,6 +5,7 @@ import { conectarMongoDB } from "@/middlewares/conectMongoDB";
 import { UsuarioModel } from "@/models/UsuarioModel";
 import { publicacaoModel } from "@/models/publicacaoModel";
 import { seguidorModel } from "@/models/seguidorModel";
+import { politcaCors } from "@/middlewares/politicaCors";
 
 const feedEndopoint = async(req : NextApiRequest, res : NextApiResponse<RespostaPadraoMsg | any>) => {
   try {
@@ -64,4 +65,4 @@ const feedEndopoint = async(req : NextApiRequest, res : NextApiResponse<Resposta
   return res.status(400).json({erro: 'Não foi possível obter feed'});
 }
 
-export default validarTokenJWT(conectarMongoDB(feedEndopoint));
+export default politcaCors(validarTokenJWT(conectarMongoDB(feedEndopoint)));

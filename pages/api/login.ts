@@ -6,11 +6,12 @@ import type {LoginResposta} from '../../types/LoginResposta';
 import md5 from 'md5';
 import { UsuarioModel } from "../../models/UsuarioModel";
 import jwt from 'jsonwebtoken';
+import { politcaCors } from "@/middlewares/politicaCors";
 
 
 const endpointLogin = async(
     req : NextApiRequest,
-    res : NextApiResponse<RespostaPadraoMsg | LoginResposta>
+    res : NextApiResponse<RespostaPadraoMsg | LoginResposta | any>
 ) => {
 
 const {MINHA_CHAVE_SWT} = process.env;
@@ -35,4 +36,4 @@ if(!MINHA_CHAVE_SWT){
     return res.status(405).json({erro : 'Método inválido'})
 }
 
-export default conectarMongoDB(endpointLogin);
+export default politcaCors(conectarMongoDB(endpointLogin));

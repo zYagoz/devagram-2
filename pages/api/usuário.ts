@@ -5,6 +5,7 @@ import {conectarMongoDB} from '../../middlewares/conectMongoDB'
 import { UsuarioModel } from "@/models/UsuarioModel";
 import nc from 'next-connect';
 import {upload, uploadImageComisc} from '../../services/uploadImagemCosmic';
+import { politcaCors } from "@/middlewares/politicaCors";
 
 
 const handler = nc()
@@ -64,4 +65,4 @@ export const config = {
     }
 }
 
-export default validarTokenJWT(conectarMongoDB(handler));
+export default politcaCors(validarTokenJWT(conectarMongoDB(handler)));
