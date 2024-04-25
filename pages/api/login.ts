@@ -28,7 +28,7 @@ if(!MINHA_CHAVE_SWT){
 
                 const token = jwt.sign({_id : usuarioEncontrado._id}, MINHA_CHAVE_SWT);
 
-                return res.status(200).json({nome : usuarioEncontrado.nome, email : usuarioEncontrado.email, token})
+                return res.status(200).json({nome : usuarioEncontrado.nome, email : usuarioEncontrado.email, token});
 
             }
             return res.status(400).json({erro : 'Usuário/Senha inválido'})

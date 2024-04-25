@@ -1,5 +1,5 @@
 export type CadastroRequisicao = {
-    nome: string,
+    nome : String,
     email: string,
     senha: string
 }

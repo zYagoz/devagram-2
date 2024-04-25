@@ -10,11 +10,9 @@ import {politcaCors} from '../../middlewares/politicaCors'
 
 
 const handler = nc()
-    .use(upload.single('file'))
+    // .use(upload.single('file'))
     .post(async (req: NextApiRequest, res: NextApiResponse<RespostaPadraoMsg>) =>{
         const usuario = req.body as CadastroRequisicao;
-
-        
         if(!usuario.nome || usuario.nome.length <2){
             return res.status(400).json({erro: 'Nome inválido'});
         }
