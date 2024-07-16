@@ -13,7 +13,7 @@ export const validarTokenJWT = (handler : NextApiHandler) =>
     }
 
 
-    if(!req || req.headers){
+    if(!req || !req.headers){
         return res.status(401).json({erro : 'Permissão negada'});
     }
     
