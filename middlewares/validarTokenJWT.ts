@@ -7,8 +7,8 @@ export const validarTokenJWT = (handler : NextApiHandler) =>
     
 
         try{
-            const {MINHA_cHAVE_SWT} = process.env
-    if(!MINHA_cHAVE_SWT){
+            const {MINHA_CHAVE_SWT} = process.env
+    if(!MINHA_CHAVE_SWT){
         return res.status(500).json({erro : 'ENV de chave não informada' });
     }
 
@@ -30,7 +30,7 @@ export const validarTokenJWT = (handler : NextApiHandler) =>
             
         }
         
-        const decoded = await jwt.verify(token, MINHA_cHAVE_SWT) as JwtPayload;
+        const decoded = await jwt.verify(token, MINHA_CHAVE_SWT) as JwtPayload;
         if(!decoded){
             return res.status(401).json({erro : 'Permissão negada'});
         }
